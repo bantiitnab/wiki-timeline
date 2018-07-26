@@ -1,0 +1,49 @@
+<html>
+  <head>
+    <title>TimeLine</title>
+  </head>
+  <body>
+    <h3>TimeLine</h3>
+    <form method="POST">
+      <input type="text" name="query" value={{request.form.query if request.form.query else 'gst'}}>
+      <input type="text" name="lines" value={{request.form.lines if request.form.lines else '10'}}>
+      <input type="checkbox" name="spacy">      
+      <input type="submit" value="submit">
+    </form>
+
+    
+    {% if timeline and timeline != 'invalid' %}
+      {% if wiki_pages_query %}
+        <h4>Related Query suggestions</h4>
+        {% for query in wiki_pages_query %}
+          <span>{{query}}, </span>
+        {% endfor %}
+      {% endif %}
+
+      <h4>Results ({{timeline|length}})</h4>  
+      <button id="show-emb">Toggle Embeddings</button>    
+      <h5>Showing Timeline for {{wiki_pages_query[0]}}</h5>
+      
+      {% for line, datetime, emb in timeline %}
+        <p>
+          <div class="line">{{line}}</div>
+          <div class="date">{{datetime}}</div>
+          <div class="emb">Embedding: {{emb}}</div>
+        </p>
+      {% endfor %}
+    {% endif %}
+
+    {% if timeline and timeline == 'invalid' %}    
+      <p>Invalid input. Try again</p>    
+    {% endif %}    
+    
+    <script src="static/jquery.js"></script>    
+    <script>
+      $(function() {
+        console.log($('.emb'))
+        $('.emb').hide()         
+        $('#show-emb').on('click', function() {$('.emb').toggle()})
+      })      
+    </script>
+  </body>
+</html>
