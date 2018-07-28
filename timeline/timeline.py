@@ -5,8 +5,8 @@ import copy
 import argparse
 from datetime import datetime
 
-from sentence_embedding import timeline_sentences_embeddings
-from datefinder import DateFinder
+from .sentence_embedding import timeline_sentences_embeddings
+from .datefinder import DateFinder
 
 class Timeline(object):
 

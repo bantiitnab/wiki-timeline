@@ -17,9 +17,8 @@ spacy[optional]
 Install the requirements from requirement.txt
 
 ## Testing
-1.) Test flask app in browser and try it.
+1. Test flask app in browser and try it.
 or
-2.) Test from command line using
-`
-python timeline.py gst --lines 10 --spacy False
+2. Test from command line using
+`python timeline.py gst --lines 10 --spacy False
 `

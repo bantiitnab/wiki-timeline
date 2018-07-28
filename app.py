@@ -1,9 +1,9 @@
 from flask import Flask, render_template, request
 from timeline.timeline import get_timeline
 
-app = Flask(__name__)
+application = Flask(__name__)
 
-@app.route('/', methods=['GET', 'POST'])
+@application.route('/', methods=['GET', 'POST'])
 def home():
     if request.method == 'GET':
         return render_template('app.html')
@@ -35,4 +35,4 @@ def home():
         return render_template('app.html', **{'timeline': timeline, 'wiki_pages_query': wiki_pages_query})        
 
 if __name__ == '__main__':
-    app.run(debug=True, use_reloader=True)
+    application.run(debug=True, use_reloader=True)
